@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Item, Supplier, Movement
+from .models import User, Supplier, Location, Item, Movement, Order, OrderItem
 
-class ItemSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
+        model = User
         fields = '__all__'
 
 class SupplierSerializer(serializers.ModelSerializer):
@@ -11,7 +11,27 @@ class SupplierSerializer(serializers.ModelSerializer):
         model = Supplier
         fields = '__all__'
 
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = '__all__'
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
 class MovementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movement
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
         fields = '__all__'
