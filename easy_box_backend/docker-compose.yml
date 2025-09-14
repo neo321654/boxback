@@ -11,7 +11,8 @@ services:
     env_file:
       - ./.env.dev
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     image: postgres:13
     volumes:
@@ -20,6 +21,11 @@ services:
       - POSTGRES_USER=hello
       - POSTGRES_PASSWORD=hello
       - POSTGRES_DB=hello_dev
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hello"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
